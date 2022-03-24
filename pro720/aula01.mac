@@ -1,0 +1,45 @@
+/**********************************************************/
+/* Programa para ilustrar a evolução da física */
+/* clássica para a quântica  */
+/* Davi Neves - Ouro Preto, MG, Brasil - Mai, 2021 */
+/**********************************************************/
+/* Número de algarismos significativos */
+fpprintprec: 3$  /* Dois dígitos depois da vírgula */
+/* Qual a energia da maçã que caiu na cabeca do Newton? */
+/* Dados de entrada */
+m: 0.15$   /* kg - Massa da maçã */
+g: 9.81$   /* m/s^2 - Aceleração gravitacional */
+H: 2.3$    /* m - Altura H da árvore */
+/* E = K + U = 0 -> Formulação física para determinar 
+   K = 0.5*m*v^2 -> a velocidade da maçã
+   U = m.g.h     -> Igualamos a energia potencial V
+   v^2 = 2*g*h   -> com a energia cinética
+   v = sqrt(2gh) -> Obtendo essa formula: */
+v: sqrt(2*g*H)$
+/* Energia Cinética */
+K: 0.5*m*v^2$
+/* Resultado */
+" ";
+sconcat("[Massa(kg), Altura(m)] = ", [m, H]);
+sconcat("A energia cinética da maçã = ", K, " J.");
+/**********************************************************
+  Energia cinética dos elétrons no EFEITO FOTOELETRICO
+  Dados de entrada do Alumínio */
+nu0: 1.02E15$   /* Hz - Frequência de trabalho do Al */
+nu: 1.5E15$	    /* Hz - Frequência do feixe de laser */
+h: 6.6E-34$      /* J.s - Constante de Planck */
+/* Energia cinética dos elétrons emitidos do Alumínio */
+Ke: h*(nu - nu0)$
+sconcat("A energia dos elétrons = ", Ke, " J");
+/**********************************************************
+  Comparando as coisas */
+Mol: 27$       /* g/mol - Massa molar */
+NAv: 6.02E23$  /* Número de Avogadro */
+NoMol: m/Mol$  /* Número de Mols de Al */
+NoAtm: NoMol*NAv$ /* Número de átomos de Al */
+KT: Ke*NoAtm$ /* Energia cinética para m g de Al */
+sconcat("Energia dos elétons em ", m, "g de Al = ", KT, " J"); 
+/**********************************************************
+*** FIM */
+quit();
+/**********************************************************/
