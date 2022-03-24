@@ -1,0 +1,43 @@
+/*
+    Programa para calcular a probabilidade de encontar um
+  elétron entre L/5 e L/2, considerando o problema de um
+  poço infinito com largura L.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Maio, 2021
+*/
+/**********************************************************/
+fpprintprec: 3$  /* Algarismos significativos */ 
+/* Parâmetros utilizados */
+assume( L > 0)$
+a: L/5$
+b: L/2$
+/**********************************************************/
+/* Definindo a função de onda para o poço infinito */
+n: 1$
+" ";
+sconcat("Função de onda para N = ", n,".");
+psi: sqrt(2/L)*sin(((n*%pi)/L)*x);
+/* Calculando a integral -> Probabilidade [a, b] */
+i2: integrate(psi*psi, x, a, b)$
+Pab: ev(i2, numer)$
+" ";
+sconcat("Probabilidade [a, b] = ", Pab, "."); 
+/**********************************************************/
+/* Definindo a função de onda para o poço infinito */
+n: 3$
+" ";
+sconcat("Função de onda para N = ", n,".");
+psi: sqrt(2/L)*sin(((n*%pi)/L)*x);
+/* Calculando a integral -> Probabilidade [a, b] */
+i2: integrate(psi*psi, x, a, b)$
+Pab: ev(i2, numer)$
+" ";
+sconcat("Probabilidade [a, b] = ", Pab, "."); 
+/**********************************************************/
+/* FIM */
+quit();
+/**********************************************************/
+/* Para executar: Maxima prog.mac 
+   ou             maxima -qb prog.mac                     */
+/**********************************************************/

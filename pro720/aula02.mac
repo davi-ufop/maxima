@@ -1,0 +1,23 @@
+/********************************************************************
+   Programa para auxiliar a Aula 02 de PRO720 - Vide Aula02.odp
+   Davi Neves - UFOP/DEPRO - Ouro Preto, MG, Brasil - Mai, 2021
+*********************************************************************/
+/* Definindo os parametros e variaveis */
+Lx: 20$   /* Limite de X */
+Ly: 15$   /* Limite de Y */
+k: 0.5$   /* Parametros da onda 3D */
+w: 0.25$  /* Números das ondas, em X(k) e Y(w) */
+A: 12$    /* Amplitude da onda */
+/* Função de Onda */
+" ";
+"Função de onda:";
+Psi(x,y) := A*sin(k*x)*sin(w*y);
+/* Plotando o gráfico 3D da onda estacionária */
+" ";
+"Plotando a função de onda:";
+plot3d(Psi(x, y), [x, -Lx, Lx], [y, -Ly, Ly], 
+                  [png_file, "../Maxima/FigA02_01.png"])$
+/********************************************************************
+*** FIM */
+quit();
+/********************************************************************/

@@ -1,0 +1,40 @@
+/*
+    Programa elaborado para averiguar a ortogonalidade das
+  funções harmônicas provenientes da solução de H.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Junho, 2021
+*/
+/**********************************************************/
+/* Carregando o módulo necessário */
+load(orthopoly)$
+/* Parâmetros usados no programa */
+l1:1$
+m1:0$
+l2:2$
+m2:1$
+/* Função harmônica 1 */
+" ";
+"Função harmonica l=1, m=0";
+Y1: spherical_harmonic(l1, m1, theta, phi);
+/* Função harmônica 2 */
+" ";
+"Função harmonica l=2, m=1";
+Y2: spherical_harmonic(l2, m2, theta, phi);
+/* Integral entre as funções */
+" ";
+"Integral entre as funções 1 e 2:";
+" ";
+"Integral em Theta:";
+I1: integrate(Y1*Y2, theta, 0, %pi);
+" ";
+"Integral em Phi:";
+I2: integrate(I1, phi, 0, 2*%pi);
+/**********************************************************/
+" ";
+"FIM";
+quit();
+/**********************************************************/
+/* Para executar: Maxima prog.mac ou                      */
+/*                maxima -qb prog.mac                     */
+/**********************************************************/

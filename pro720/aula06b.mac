@@ -1,0 +1,43 @@
+/*
+    Programa para calcular a posição mais provável de um
+  elétron entre 0 e L/2, considerando o problema de um
+  poço infinito com largura L.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Maio, 2021
+*/
+/**********************************************************/
+fpprintprec: 2$  /* Algarismos significativos */ 
+/* Parâmetros utilizados */
+L: 5;
+a: 0$
+b: L$
+/**********************************************************/
+/* Definindo a função de onda para o poço infinito */
+n: 1$
+" ";
+sconcat("Função de onda para N = ", n,".");
+psi: sqrt(2/L)*sin(((n*%pi)/L)*x);
+/* Calculando a integral -> Probabilidade [a, b] */
+i2: integrate(psi*x*psi, x, a, b)$
+Xbar: ev(i2, numer)$
+" ";
+sconcat("Valor mais provável de x entre [0, L] = ", Xbar, "."); 
+/**********************************************************/
+/* Definindo a função de onda para o poço infinito */
+n: 3$
+" ";
+sconcat("Função de onda para N = ", n,".");
+psi: sqrt(2/L)*sin(((n*%pi)/L)*x);
+/* Calculando a integral -> Probabilidade [a, b] */
+i2: integrate(psi*x*psi, x, a, b)$
+Xbar: ev(i2, numer)$
+" ";
+sconcat("Valor mais provável de x entre [0, L] = ", Xbar, "."); 
+/**********************************************************/
+/* FIM */
+quit();
+/**********************************************************/
+/* Para executar: Maxima prog.mac 
+   ou             maxima -qb prog.mac                     */
+/**********************************************************/

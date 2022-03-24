@@ -1,0 +1,34 @@
+/*
+    Programa elaborado para plotar as funções harmônicas dos
+  orbitais atômicos, provenientes da solução de Schrodinegr
+  para o Hidrogênio em coordenadas esféricas.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Junho, 2021
+*/
+/**********************************************************/
+/* Importando o módulo necessário */
+load(orthopoly)$
+/* Parâmetros usados no programa */
+l: 2$
+m: 0$
+tp: [L=l, M=m]; /* Para expor o tipo */
+/* Definindo a função harmônica */
+" ";
+"Função Harmônica Esférica";
+Y: spherical_harmonic(l, m, theta, phi)$
+YR: realpart(Y);  /* Função Real */
+/* Plotando a função */
+" ";
+"Plotando a Função Harmônica!";
+plot3d(YR, [theta, 0, %pi], [phi, 0, 2*%pi],
+       [transform_xy, spherical_to_xyz], [grid, 30, 60],
+       [png_file, "../Maxima/FigA04_02.png"])$
+/**********************************************************/
+" ";
+"FIM";
+quit();
+/**********************************************************/
+/* Para executar: Maxima prog.mac ou                      */
+/*                maxima -qb prog.mac                     */
+/**********************************************************/

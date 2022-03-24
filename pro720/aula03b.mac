@@ -1,0 +1,45 @@
+/*
+    Proggrama elaborado para plotar a solução da equação de
+  Schrodinger no problema do poço finito, com energia maior
+  e menor que a do poço.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Maio, 2021
+*/
+/**********************************************************/
+/* Parâmetros usados no programa */
+k1: 2$     /* Fora: k1=E-V */
+k2: 8$     /* Dentro: k2=E */
+k3: 0.28$  /* Fora: k3 = V-E */
+/* Função de onda para E>V */
+L:5;
+" ";
+"Função de onda para E>V";
+psi(x) := if (x>L or x<-L) then sin(k1*x) else sin(k2*x);
+plot2d(psi(x), [x, -2*L, 2*L], [png_file, "../Maxima/FigA03_04.png"])$
+/**********************************************************/
+/* Função de onda para E<V */
+" ";
+"Função de onda para E<V";
+psi(x) := if (x>L or x<-L) then exp(-abs(k3*x)) else sin(k2*x);
+plot2d(psi(x), [x, -2*L, 2*L], [png_file, "../Maxima/FigA03_05.png"])$
+/**********************************************************/
+/* Avaliando as probabilidades nas regiões*/
+" ";
+"Integral Fora: ";
+i1: integrate(sin(k1*x)^2, x, 0, L);
+ev(i1, numer);
+plot2d(sin(k1*x), [x, 0, L], [png_file, "../Maxima/FigA03_06.png"])$
+" ";
+"Integral Dentro: ";
+i2: integrate(sin(k2*x)^2, x, 0, L);
+ev(i2, numer);
+plot2d(sin(k2*x), [x, 0, L], [png_file, "../Maxima/FigA03_07.png"])$
+/**********************************************************/
+" ";
+"FIM";
+quit();
+/**********************************************************/
+/* Para executar: Maxima prog.mac ou                      */
+/*                maxima -qb prog.mac                     */
+/**********************************************************/

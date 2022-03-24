@@ -1,0 +1,33 @@
+/*
+    Programa elaborado para determinar a solução da equação 
+  de Schrodinger para o poço infinito 3D.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Junho, 2021
+*/
+/**********************************************************/
+/* Parâmetros usados no programa */
+assume( k1 > 0 )$
+assume( k2 > 0 )$
+assume( k3 > 0 )$
+assume( E > 0 )$
+/* Equação Diferencial */
+eq: 'diff(psi, x, 2) + 'diff(psi, y, 2) + 'diff(psi, z, 2) = E*psi;
+/* Solução Geral */
+" ";
+"Solução Geral";
+psi(x, y, z) = A*sin(k1*x)*sin(k2*y)*sin(k3*z);
+/* Plotando o Gráfico */
+" ";
+"PLOTANDO!";
+k1: 1.2;
+k2: 0.8;
+plot3d(sin(k1*x)*sin(k2*y), [x, -6, 6], [y, -6, 6], [png_file, "../Maxima/FigA04_01.png"])$
+/**********************************************************/
+" ";
+"FIM";
+quit()$
+/**********************************************************/
+/* Para executar: Maxima prog.mac ou                      */
+/*                maxima -qb prog.mac                     */
+/**********************************************************/

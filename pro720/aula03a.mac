@@ -1,0 +1,66 @@
+/*
+    Programa elaborado para elucidar a resolução do poço de
+  potencial infinito, para a aula 03 de PRO720.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Maio, 2021
+*/
+/**********************************************************/
+/* Parâmetros do processo */
+assume( k > 0 )$
+assume( L > 0 )$
+/* Equanção de Schrodinger para o caso: */
+" ";
+"Equação de Schrodinger:";
+eq: 'diff(y,x,2) = -(k^2)*y;
+/* Solução Geral da equação: */
+sg: ode2(eq, y, x)$
+/* Adequando a solução em uma função */
+" ";
+"Solução Geral:";
+define(y(x), rhs(sg));
+/* Aplicando a primeira condição inicial */
+" ";
+"Primeira condição de contorno (y(0)=0):";
+cc1: [y(0)=0];
+define(y(x), subst(cc1, y(x)));
+/* Aplicando a segunda condição de contorno */
+" ";
+"Segunda condição de contorno (y(L)=0:";
+cc2: solve(k*L=n*%pi, k);
+define(y(x), subst(cc2, y(x)));
+/* Determinando a constante de normalização: */
+" ";
+"Fazendo y(n=1) -> y1:";
+cn1: [n = 1];    /* Fazendo y(n=1) -> y1*/
+define(y1(x), subst(cn1, y(x)));
+" ";
+"Integrando a expressão anterior ao quadrado:";
+i2: integrate(y1(x)^2, x, 0, L)=1;
+" ";
+ncc: solve(i2, %k1)[2];  /* Isolando a constante k1 */
+" ";
+"Expressão normalizada:";
+define(y(x), subst(ncc, y(x)));
+/**********************************************************/
+/* PLOTANDO A SOLUÇÃO */
+L: 5$
+" ";
+"Plotando n=1 ...";
+n: 1;
+plot2d(y(x), [x, 0, L], [png_file, "../Maxima/FigA03_01.png"])$
+" ";
+"Plotando n=3 ...";
+n: 3;
+plot2d(y(x), [x, 0, L], [png_file, "../Maxima/FigA03_02.png"])$
+" ";
+"Plotando n=5 ...";
+n: 5;
+plot2d(y(x), [x, 0, L], [png_file, "../Maxima/FigA03_03.png"])$
+/**********************************************************/
+"FIM";
+quit()$
+/**********************************************************/
+/* Para executar digite: Maxima prog.mac
+   ou então: maxima -qb prog.mac                          */
+/**********************************************************/

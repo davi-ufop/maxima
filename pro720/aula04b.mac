@@ -1,0 +1,34 @@
+/*
+    Programa elaborado para determinar a solução da equação 
+  de Schrodinger cartesiana para o átomo de hidrogênio.
+  Autor: Davi Neves
+  Empresa: UFOP/DEPRO
+  Data: Junho, 2021
+*/
+/**********************************************************/
+/* Importando módulos necessários */
+load(contrib_ode)$
+/* Parâmetros usados no programa */
+assum ( k > 0 )$
+assume( E > 0 )$
+/* Equação Diferencial */
+" ";
+"Equação de Schrodinger:";
+eq: -'diff(y, x, 2) - k*y/(x^1) = E*y;
+/* Solução Geral */
+" ";
+"Solução Geral:";
+sg: contrib_ode(eq, y, x)$
+define(y(x), rhs(sg[1]));
+/* Numerando!*/
+" ";
+"NUMERANDO!";
+cc1: [%k1=1, %k2=1, k=2, E=4];
+define(y(x), ev(subst(cc1, y(x)), numer));
+/**********************************************************/
+" ";
+"FIM";
+quit()$
+/**********************************************************/
+/* Para executar: maxima -qb prog.mac                     */
+/**********************************************************/
